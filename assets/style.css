@@ -1,0 +1,65 @@
+:root {
+  --bs-blue: rgb(0, 0, 95);
+  --bs-primary: #0d6efd;
+}
+
+body{
+   background: url('https://images.unsplash.com/photo-1597910037283-e728413e079c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80');
+   background-repeat: no-repeat;
+   background-position: center center;
+   background-attachment: fixed; 
+   background-size:cover;
+   height: 100vh;
+   overflow-x: hidden;
+}
+
+.bg-success {
+  --bs-bg-opacity: 1;
+  background-image: linear-gradient(to right, var(--bs-primary) , var(--bs-blue));
+}
+
+
+
+.custom-col{
+  background: rgba(24,24,27,0.6);
+  border-width: 1px solid;
+  border-color: #ffff;
+  border-radius: 1px;
+
+}  
+
+.custom-card{
+margin-top: 2rem;
+background: rgba(24,24,27,0.6);
+border: 1px solid #eee;
+border-radius: 10px;
+}
+
+.custom-bar{
+  border: 1px solid #eee;
+  border-radius: 10px;
+  background:rgba(24,24,27,0.6);
+  margin-top: 0.5rem;
+}
+
+
+@media only screen and (max-width:700px) {
+.custom-col{
+  padding-bottom: 25px;
+}
+  .custom-bar{
+   margin-top: 25px;
+ }
+ .custom-card{
+  margin-top: 16px;  
+}
+}
+
+
+.custom-small-card{
+text-align: center;
+background: rgba(24,24,27,0.6);
+border: 1px solid #eee;
+border-radius: 20px;
+
+}

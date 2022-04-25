@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+    <link rel="stylesheet" href="./assets/style.css">
+    <title>Weather Dashboard</title>
+</head>
+<body>
+<header class="header bg-success p-3 text-white text-center ">
+    <h1 class="fw-bolder ">Weather Dashboard</h1>
+</header>
+<div class="container-fluid">
+    <div class="row">
+       <div class="custom-col col-lg-3 ">
+           <p class="mt-2 fs-2 fw-bold text-center text-light ">Search for a city:</p>
+           <div class="input-group mb-4">
+               <input type="text" id="enter-city" class="form-control" placeholder="Enter a City" aria-label="Enter a City">
+               <div class="input-group-append">
+                   <button class="btn btn-primary" type="button" id="search-btn">
+                        <i class="fas fa-search"></i>
+                   </button>
+               </div>
+            </div>
+                <div>
+                <button class="btn btn-lg btn-primary mb-3 col-12" type="button"  data-bs-toggle="button" id="clear-history">Clear history</button>
+                <form id="history"></form>
+            </div>
+        </div>
+        <div class="col-lg-9">
+            <div class="row">
+                <div class="custom-card col-lg-11 card mb-2  top-0 start-50 translate-middle-x text-light d-none" id="todays-weather">
+                    <div class="card-body">
+                        <h3 id="city-name" class="city-name align-middle"></h3>
+                        <img id="current-pic" alt="">
+                        <p id="time"><span id="am-pm"></span></p>
+                        <p id="temperature"></p>
+                        <p id="humidity"></p>
+                        <p id="wind-speed"></p>
+                        <p id="UV-index"></p>
+                    </div>
+                </div>
+            </div>
+            <div class="row d-none" id="fiveday-header">
+                <div class="custom-bar col-lg-11 card mb-2 top-0 start-50 translate-middle-x text-light text-center">
+                    <h3>5-Day Forecast</h3>
+                </div>
+            </div>
+            <div class="row d-flex justify-content-evenly d-none " id="small-card">
+                <div class="custom-small-card col-md-2 forecast text-white  mb-2"></div>
+                <div class="custom-small-card col-md-2 forecast text-white  mb-2"></div>
+                <div class="custom-small-card col-md-2 forecast text-white  mb-2"></div>
+                <div class="custom-small-card col-md-2 forecast text-white  mb-2"></div>
+                <div class="custom-small-card col-md-2 forecast text-white  mb-2"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<script src="./assets/script.js"></script>
+</body>
+</html>
