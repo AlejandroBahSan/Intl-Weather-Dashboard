@@ -128,38 +128,6 @@ function showWeatherData(data) {
                             if (continent === "North America" || continent === "South America") {
                                 continent = "America";
                             }
-                            fetch(`http://worldtimeapi.org/api/timezone`)
-                                .then(res => res.json()).then(worldtime => {
-                                    console.log(worldtime);
-                                });
-
-                             var citySearchy = {   
-                             method: 'get',
-                             url: 'https://maps.googleapis.com/maps/api/geocode/json?&address=cuernavaca&key=AIzaSyAfiYOpPAqYzx8Q9sjolBXLZiYB6nK9tq0',
-                             headers: {}
-                              };
-
-                         axios(citySearchy)
-                             .then(function (response1) {
-                                 console.log(response1.data);
-                             })
-                             .catch(function (error) {
-                                 console.log(error);
-                             });  
-                                
-                            var config = {
-                                method: 'get',
-                                url: 'https://maps.googleapis.com/maps/api/timezone/json?location=43.29712312,5.382137115&timestamp=1374868635&sensor=false&key=AIzaSyAfiYOpPAqYzx8Q9sjolBXLZiYB6nK9tq0',
-                                headers: {}
-                            };
-
-                            axios(config)
-                                .then(function (response) {
-                                    console.log(response.data);
-                                })
-                                .catch(function (error) {
-                                    console.log(error);
-                                });
 
                                 // Block used to search for the international current hour in each city
                             // === replacing all the spaces with underscores, so we can search places like New York === //
@@ -178,7 +146,6 @@ function showWeatherData(data) {
                                     `<div class="card-body">
                                         <h3 id="city-name" class="city-name align-middle">${cityName} (${continent})</h3>
                                         <img id="current-pic" alt="">
-                                        <p id="temperature">{cityTime}</p>
                                         <p id="temperature">Temperature: ${temp}&#176C</p>
                                         <p id="humidity">Humidity: ${humidity}%</p>
                                         <p id="wind-speed">Wind Speed: ${windSpeedData} KM/H</p>
