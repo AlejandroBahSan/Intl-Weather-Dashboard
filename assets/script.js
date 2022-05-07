@@ -1,16 +1,16 @@
 const citySearch = document.getElementById("enter-city");
 const searchBtn = document.getElementById("search-btn");
 const clearBtn = document.getElementById("clear-history");
-var historyEl = document.getElementById("history");
-var cityName = document.getElementById("city-name");
-var timeEl = document.getElementById("time");
-var tempEl = document.getElementById("temperature");
-var humidityEl = document.getElementById("humidity");
-var windSpeedEl = document.getElementById("wind-speed");
-var uvIndexEl = document.getElementById("UV-index");
-var fivedayEl = document.getElementById("fiveday-header");
+let historyEl = document.getElementById("history");
+let cityName = document.getElementById("city-name");
+let timeEl = document.getElementById("time");
+let tempEl = document.getElementById("temperature");
+let humidityEl = document.getElementById("humidity");
+let windSpeedEl = document.getElementById("wind-speed");
+let uvIndexEl = document.getElementById("UV-index");
+let fivedayEl = document.getElementById("fiveday-header");
 const fiveDayForecast = document.getElementById("small-card");
-var todayweatherEl = document.getElementById("todays-weather");
+let todayweatherEl = document.getElementById("todays-weather");
 let searchHistory = JSON.parse(localStorage.getItem("search")) || [];
 let i = 0;
 
@@ -22,6 +22,7 @@ let APIKey = "a42588003d826e5d0df55563b9cec924";
 // === Please if you are going to use api.opencagedata.com API, get your own API KEY at https://opencagedata.com/users/sign_up ! Thanks dear collega === //
 let geoCodeKey = "d2e0dbd682fb4a8dbbffd87ef562fe17";
 
+let GKey = 'AIzaSyAHDHUx9NPuN7W_RHmxQs_1QfhQkbSNOX0';
 
 // === Search option by clicking the magnifier button === //
 searchBtn.addEventListener("click", function () {
@@ -63,14 +64,14 @@ clearBtn.addEventListener("click", function () {
 console.log(searchHistory);
 
 for (; i < searchHistory.length; i++) {
-    var eachNewHighScore = document.createElement("p");
+    let eachNewHighScore = document.createElement("p");
     eachNewHighScore.setAttribute("class", "form-control d-block bg-white text-center");
     eachNewHighScore.innerHTML = searchHistory[i];
     historyEl.appendChild(eachNewHighScore);
 }
 
 historyEl.addEventListener('click', function handleClick(event) {
-    var clickEvent = event.target.textContent;
+    let clickEvent = event.target.textContent;
     console.log(clickEvent);
     citySearch.value = clickEvent;
     console.log(citySearch.value);
@@ -116,7 +117,7 @@ function showWeatherData(data) {
             // === API Request, to search for the continent of each city === //    
             fetch(`https://api.opencagedata.com/geocode/v1/json?q=${citySearch.value}&key=${geoCodeKey}`)
                 .then(res => res.json()).then(continentAPI => {
-                    var continent = continentAPI.results[0].components.continent;
+                    let continent = continentAPI.results[0].components.continent;
 
                     // === API Request, to get UV index value. === //
                     fetch(`https://api.openweathermap.org/data/2.5/uvi/forecast?lat=${lat}&lon=${lon}&appid=${APIKey}&cnt=1`)
@@ -127,30 +128,63 @@ function showWeatherData(data) {
                             if (continent === "North America" || continent === "South America") {
                                 continent = "America";
                             }
+                            fetch(`http://worldtimeapi.org/api/timezone`)
+                                .then(res => res.json()).then(worldtime => {
+                                    console.log(worldtime);
+                                });
 
+                             var citySearchy = {   
+                             method: 'get',
+                             url: 'https://maps.googleapis.com/maps/api/geocode/json?&address=cuernavaca&key=AIzaSyAfiYOpPAqYzx8Q9sjolBXLZiYB6nK9tq0',
+                             headers: {}
+                              };
+
+                         axios(citySearchy)
+                             .then(function (response1) {
+                                 console.log(response1.data);
+                             })
+                             .catch(function (error) {
+                                 console.log(error);
+                             });  
+                                
+                            var config = {
+                                method: 'get',
+                                url: 'https://maps.googleapis.com/maps/api/timezone/json?location=43.29712312,5.382137115&timestamp=1374868635&sensor=false&key=AIzaSyAfiYOpPAqYzx8Q9sjolBXLZiYB6nK9tq0',
+                                headers: {}
+                            };
+
+                            axios(config)
+                                .then(function (response) {
+                                    console.log(response.data);
+                                })
+                                .catch(function (error) {
+                                    console.log(error);
+                                });
+
+                                // Block used to search for the international current hour in each city
                             // === replacing all the spaces with underscores, so we can search places like New York === //
-                            const UnderScores = citySearch.value.replaceAll(' ', '_');
-
+                            // const UnderScores = citySearch.value.replaceAll(' ', '_');
                             // === Gives the time of specific cities based on TZ database name  === //
-                            var cityTime = new Date().toLocaleString("en-US", { timeZone: `${continent}/${UnderScores}`, dateStyle: 'long', timeStyle: 'short', hourCycle: 'h12' });
-                            
+                            // let cityTime = new Date().toLocaleString("en-US", { timeZone: `${continent}/${UnderScores}`, dateStyle: 'long', timeStyle: 'short', hourCycle: 'h12' });
+                            // console.log(cityTime);
 
-                            console.log(cityTime);
                             todayweatherEl.classList.remove("d-none");
                             let UVIndex = forecastResponse[0].value;
 
-                            // === Displays in DOM (Main Card) the information we got from the APIs opencagedata & openweathermap === //
-                            todayweatherEl.innerHTML =
+                    
+                                // === Displays in DOM (Main Card) the information we got from the APIs opencagedata & openweathermap === //
+                                todayweatherEl.innerHTML =
 
-                                `<div class="card-body">
-                            <h3 id="city-name" class="city-name align-middle">${cityName} (${continent})</h3>
-                            <img id="current-pic" alt="">
-                            <p id="temperature">${cityTime}</p>
-                            <p id="temperature">Temperature: ${temp}&#176C</p>
-                            <p id="humidity">Humidity: ${humidity}%</p>
-                            <p id="wind-speed">Wind Speed: ${windSpeedData} KM/H</p>
-                            <p id="UV-index">UV Index: <i class="bg-success px-2 rounded"> ${UVIndex}</i></p>
-                        </div>`
+                                    `<div class="card-body">
+                                        <h3 id="city-name" class="city-name align-middle">${cityName} (${continent})</h3>
+                                        <img id="current-pic" alt="">
+                                        <p id="temperature">{cityTime}</p>
+                                        <p id="temperature">Temperature: ${temp}&#176C</p>
+                                        <p id="humidity">Humidity: ${humidity}%</p>
+                                        <p id="wind-speed">Wind Speed: ${windSpeedData} KM/H</p>
+                                        <p id="UV-index">UV Index: <i class="bg-success px-2 rounded"> ${UVIndex}</i></p>
+                                    </div>`
+
                         });
                 });
             // === Five Day Forecast small cards === //  
@@ -193,3 +227,4 @@ function showWeatherData(data) {
         });
 
 }
+
