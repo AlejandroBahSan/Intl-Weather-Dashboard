@@ -22,8 +22,6 @@ let APIKey = "a42588003d826e5d0df55563b9cec924";
 // === Please if you are going to use api.opencagedata.com API, get your own API KEY at https://opencagedata.com/users/sign_up ! Thanks dear collega === //
 let geoCodeKey = "d2e0dbd682fb4a8dbbffd87ef562fe17";
 
-let GKey = 'AIzaSyAHDHUx9NPuN7W_RHmxQs_1QfhQkbSNOX0';
-
 // === Search option by clicking the magnifier button === //
 searchBtn.addEventListener("click", function () {
     if (citySearch.value === "") {
